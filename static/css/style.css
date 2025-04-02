@@ -1,0 +1,551 @@
+/* Custom styles to enhance the Bootstrap theme */
+
+/* Core styles and variables */
+:root {
+    /* Shared variables between themes */
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.12);
+    --border-radius-sm: 0.375rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+    --transition-speed: 0.25s;
+    
+    /* Light mode variables */
+    --light-bg: #f8f9fa;
+    --light-card-bg: #ffffff;
+    --light-text: #212529;
+    --light-text-muted: #6c757d;
+    --light-border: rgba(0, 0, 0, 0.1);
+    --light-header-bg: rgba(255, 255, 255, 0.8);
+    --light-header-text: #212529;
+    --light-footer-bg: #f1f3f5;
+    
+    /* Dark mode variables */
+    --dark-bg: #212529;
+    --dark-card-bg: rgba(255, 255, 255, 0.05);
+    --dark-text: #f8f9fa;
+    --dark-text-muted: #adb5bd;
+    --dark-border: rgba(255, 255, 255, 0.1);
+    --dark-header-bg: rgba(30, 30, 40, 0.7);
+    --dark-header-text: #ffffff;
+    --dark-footer-bg: #343a40;
+}
+
+/* Theme-specific styles */
+html.light-mode {
+    --bg-color: var(--light-bg);
+    --card-bg: var(--light-card-bg);
+    --text-color: var(--light-text);
+    --text-muted: var(--light-text-muted);
+    --border-color: var(--light-border);
+    --header-bg: var(--light-header-bg);
+    --header-text: var(--light-header-text);
+    --footer-bg: var(--light-footer-bg);
+}
+
+html.dark-mode {
+    --bg-color: var(--dark-bg);
+    --card-bg: var(--dark-card-bg);
+    --text-color: var(--dark-text);
+    --text-muted: var(--dark-text-muted);
+    --border-color: var(--dark-border);
+    --header-bg: var(--dark-header-bg);
+    --header-text: var(--dark-header-text);
+    --footer-bg: var(--dark-footer-bg);
+}
+
+/* Theme toggler styles */
+.theme-toggle-btn {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+}
+
+.theme-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+html.dark-mode .light-icon {
+    display: none;
+}
+
+html.light-mode .dark-icon {
+    display: none;
+}
+
+html.light-mode .theme-toggle-btn {
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+html.light-mode .theme-toggle-btn:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Header styling with glass morphic effect */
+.site-header {
+    position: relative;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-size: 20px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-speed) ease;
+}
+
+/* Dark mode header */
+html.dark-mode .site-header {
+    background: rgba(30, 30, 40, 0.7) !important;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode header */
+html.light-mode .site-header {
+    background: rgba(255, 255, 255, 0.7) !important;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode header text */
+html.dark-mode .site-header h1 {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+html.dark-mode .site-header p {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Light mode header text */
+html.light-mode .site-header h1 {
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    color: #333 !important;
+}
+
+html.light-mode .site-header p {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Warning text */
+.warning-text {
+    opacity: 1;
+    font-size: 0.8rem;
+    transition: color var(--transition-speed) ease;
+}
+
+html.dark-mode .warning-text {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light-mode .warning-text {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Card styling */
+.card {
+    border-radius: var(--border-radius-md);
+    border: none;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    transition: all var(--transition-speed) ease;
+    overflow: hidden;
+}
+
+html.light-mode .card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+html.dark-mode .card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Body background */
+html.light-mode body {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+html.dark-mode body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    border-bottom: 1px solid;
+}
+
+html.dark-mode .card-header {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+html.light-mode .card-header {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Image containers */
+#preview-container, #gradcam-container {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed) ease;
+}
+
+#preview-container img, #gradcam-container img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-speed) ease;
+}
+
+/* Upload area styling */
+.upload-area {
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+}
+
+html.dark-mode .upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+html.light-mode .upload-area {
+    border: 2px dashed rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.upload-area:hover, .upload-area.highlight {
+    border-color: var(--bs-primary);
+    background-color: rgba(var(--bs-primary-rgb), 0.05);
+}
+
+.upload-area .icon-container {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: color var(--transition-speed) ease;
+}
+
+html.dark-mode .upload-area .icon-container {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+html.light-mode .upload-area .icon-container {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.upload-area:hover .icon-container, .upload-area.highlight .icon-container {
+    color: var(--bs-primary);
+}
+
+.file-input-container {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.file-input-container .form-control {
+    padding-right: 8rem;
+}
+
+.file-input-container .file-name {
+    max-width: calc(100% - 9rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-input-container .btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    z-index: 5;
+}
+
+/* Results styling */
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border-radius: var(--border-radius-sm);
+    align-items: center;
+}
+
+.progress {
+    height: 1.5rem;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+html.dark-mode .progress {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+html.light-mode .progress {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: width 1s ease;
+}
+
+/* Classification result colors */
+.non-demented {
+    background-color: rgba(25, 135, 84, 0.1);
+}
+
+.very-mild-demented {
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.mild-demented {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.moderate-demented {
+    background-color: rgba(220, 53, 69, 0.2);
+}
+
+/* Badge sizing */
+.badge {
+    font-weight: 500;
+}
+
+.badge-lg {
+    font-size: 1rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Image comparison container */
+.comparison-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .comparison-container {
+        flex-direction: row;
+    }
+}
+
+.comparison-item {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.comparison-item img {
+    width: 100%;
+    display: block;
+}
+
+.comparison-label {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius-sm);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 0.75rem;
+}
+
+/* Loading animations */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
+
+/* Utility classes */
+.rounded-xl {
+    border-radius: var(--border-radius-lg);
+}
+
+.shadow-hover {
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.shadow-hover:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Footer styling */
+.site-footer {
+    transition: all var(--transition-speed) ease;
+}
+
+html.dark-mode .site-footer {
+    background-color: var(--dark-footer-bg);
+}
+
+html.light-mode .site-footer {
+    background-color: var(--light-footer-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer-text {
+    transition: color var(--transition-speed) ease;
+}
+
+html.dark-mode .footer-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+html.light-mode .footer-text {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Form control theming */
+html.light-mode .form-control {
+    background-color: #fff;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.dark-mode .form-control {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Text color adjustments */
+html.light-mode .text-muted,
+html.light-mode h1:not(.text-white), 
+html.light-mode h2:not(.text-white), 
+html.light-mode h3:not(.text-white), 
+html.light-mode h4:not(.text-white), 
+html.light-mode h5:not(.text-white), 
+html.light-mode h6:not(.text-white),
+html.light-mode p:not(.text-white):not(.badge),
+html.light-mode span:not(.badge):not(.text-white),
+html.light-mode div:not(.progress-bar):not(.alert-success):not(.alert-danger):not(.alert-info):not(.alert-warning) {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+html.light-mode .text-white,
+html.light-mode .text-white-50 {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Alert styling in light mode */
+html.light-mode .alert-secondary {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.8);
+}
+
+html.light-mode .alert-info {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: rgba(13, 110, 253, 0.8);
+    border-color: rgba(13, 110, 253, 0.1);
+}
+
+html.light-mode .alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: rgba(220, 53, 69, 0.8);
+    border-color: rgba(220, 53, 69, 0.1);
+}
+
+html.dark-mode .text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Transition for body background */
+body {
+    transition: background-color var(--transition-speed) ease, 
+                color var(--transition-speed) ease;
+}
+
+/* Dark theme enhancements */
+[data-bs-theme=dark] .card {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-bs-theme=light] .card {
+    background-color: #ffffff;
+}
+
+[data-bs-theme=dark] .bg-dark-subtle {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-bs-theme=light] .bg-dark-subtle {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-bs-theme=dark] .border-subtle {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-bs-theme=light] .border-subtle {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
